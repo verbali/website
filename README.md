@@ -17,7 +17,7 @@ docker compose exec app npm install
 docker compose exec app npx tailwindcss -i ./input.css -o ./assets/tailwind.css --watch
 ```
 
-4. Run DEX server
+4. Run DX server
 ```bash
 docker compose exec app dx serve
 ```
