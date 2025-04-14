@@ -1,4 +1,4 @@
-use crate::components::itemcard::ItemCard;
+use crate::components::cards::ItemCard;
 use crate::Route;
 use dioxus::prelude::*;
 
