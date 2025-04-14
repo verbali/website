@@ -22,22 +22,22 @@ pub fn Navbar() -> Element {
                 div {
                     class: "flex flex-row items-center",
                     Link {
-                        class: "hover:text-gray-700 px-4 py-2",
+                        class: "hover:text-gray-700 dark:hover:text-gray-300 px-4 py-2",
                         to: Route::Home {},
                         "Accueil"
                     }
                     Link {
-                        class: "hover:text-gray-700 px-4 py-2",
+                        class: "hover:text-gray-700 dark:hover:text-gray-300 px-4 py-2",
                         to: Route::Product {},
                         "Produit"
                     }
                     Link {
-                        class: "hover:text-gray-700 px-4 py-2",
+                        class: "hover:text-gray-700 dark:hover:text-gray-300 px-4 py-2",
                         to: Route::Pricing {},
                         "Tarif"
                     }
                     Link {
-                        class: "hover:text-gray-700 px-4 py-2",
+                        class: "hover:text-gray-700 dark:hover:text-gray-300 px-4 py-2",
                         to: Route::Contact {},
                         "Contact"
                     }
