@@ -1,3 +1,4 @@
+use crate::components::logos::FullLogo;
 use crate::Route;
 use dioxus::prelude::*;
 
@@ -10,14 +11,8 @@ pub fn Navbar() -> Element {
             div {
                 class: "mx-auto w-4xl flex flex-row justify-between items-center p-4",
                 Link {
-                    class: "flex flex-row items-center font-bold text-xl font-fredoka",
                     to: Route::Home {},
-                    img {
-                        src: LOGO,
-                        alt: "Logo",
-                        class: "h-8 w-8 mr-2"
-                    }
-                    "verbali"
+                    FullLogo {}
                 }
                 div {
                     class: "flex flex-row items-center",
@@ -44,16 +39,5 @@ pub fn Navbar() -> Element {
                 }
             }
         }
-
-        Outlet::<Route> {}
     }
 }
-
-// Link {
-//     to: Route::Home {},
-//     "Home"
-// }
-// Link {
-//     to: Route::Blog { id: 1 },
-//     "Blog"
-// }

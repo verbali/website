@@ -1,6 +1,6 @@
 use dioxus::prelude::*;
 
-use layouts::Navbar;
+use layouts::BaseLayout;
 use views::{Contact, Home, Pricing, Product};
 
 mod components;
@@ -10,7 +10,7 @@ mod views;
 #[derive(Debug, Clone, Routable, PartialEq)]
 #[rustfmt::skip]
 enum Route {
-    #[layout(Navbar)]
+    #[layout(BaseLayout)]
         #[route("/")]
         Home {},
 

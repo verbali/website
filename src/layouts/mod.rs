@@ -1,2 +1,2 @@
-mod navbar;
-pub use navbar::Navbar;
+mod base;
+pub use base::BaseLayout;

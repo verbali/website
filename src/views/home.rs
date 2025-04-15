@@ -1,4 +1,5 @@
 use crate::components::button::Button;
+use crate::components::logos::IconLogo;
 use crate::Route;
 use dioxus::prelude::*;
 
@@ -30,10 +31,8 @@ pub fn Home() -> Element {
                 }
 
                 div {
-                    img {
-                        src: LOGO,
-                        alt: "Logo",
-                        class: "w-240"
+                    IconLogo {
+                        width: "w-240"
                     }
                 }
             }
