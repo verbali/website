@@ -10,6 +10,7 @@ FROM chef AS builder
 COPY --from=planner /app/recipe.json recipe.json
 RUN cargo chef cook --release --recipe-path recipe.json
 COPY . .
+RUN rm -rf /app/node_modules
 
 # Install `dx`
 RUN curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
@@ -20,7 +21,7 @@ ENV PATH="/.cargo/bin:$PATH"
 RUN dx bundle --platform web
 
 FROM chef AS runtime
-COPY --from=builder /app/target/dx/web-auth/release/web/ /usr/local/app
+COPY --from=builder /app/target/dx/verbali-website/release/web/ /usr/local/app
 
 # set our port and make sure to listen for all connections
 ENV PORT=8080

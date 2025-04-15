@@ -21,3 +21,8 @@ docker compose exec app npx tailwindcss -i ./input.css -o ./assets/tailwind.css 
 ```bash
 docker compose exec app dx serve
 ```
+
+## Build container
+```bash
+docker build --network host -t verbali:latest -f dockerfiles/prod.dockerfile .
+```
