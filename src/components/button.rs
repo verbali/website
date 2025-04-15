@@ -13,7 +13,7 @@ pub struct ButtonProps {
 #[component]
 pub fn Button(props: ButtonProps) -> Element {
     let class =
-        "bg-blue-700 dark:bg-blue-800 hover:bg-blue-800 dark:hover:bg-blue-700 font-bold text-white text-xl font-fredoka py-4 px-8 rounded-lg cursor-pointer";
+        "inline-block bg-blue-700 dark:bg-blue-800 hover:bg-blue-800 dark:hover:bg-blue-700 font-bold text-white text-xl font-fredoka py-4 px-8 rounded-lg cursor-pointer";
 
     match props.route {
         Some(route) => {

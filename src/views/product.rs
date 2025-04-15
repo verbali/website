@@ -6,7 +6,7 @@ use dioxus::prelude::*;
 pub fn Product() -> Element {
     rsx! {
         div {
-            class: "mx-auto w-4xl",
+            class: "max-w-4xl lg:mx-auto lg:w-4xl p-4",
 
             div {
                 class: "my-24 text-center",

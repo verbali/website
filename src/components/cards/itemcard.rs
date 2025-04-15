@@ -11,11 +11,11 @@ pub struct ItemCardProps {
 pub fn ItemCard(props: ItemCardProps) -> Element {
     rsx! {
         div {
-            class: "flex flex-row items-center my-16",
+            class: "sm:flex sm:flex-row sm:items-center my-16",
 
             div {
                 img {
-                    class: "w-16 h-16 mr-8",
+                    class: "w-16 h-16 mx-auto sm:mx-8",
                     src: "{props.icon}",
                     alt: "{props.title} icon"
                 }

@@ -7,18 +7,21 @@ use dioxus::prelude::*;
 pub fn Footer() -> Element {
     rsx! {
         div {
-            class: "mx-auto mt-32 w-4xl",
+            class: "max-w-4xl lg:mx-auto lg:w-4xl p-4 mt-32",
             div {
-                class: "flex flex-row justify-between items-center",
+                class: "md:flex md:flex-row md:justify-between md:items-center",
 
                 div {
-                    class: "flex-1",
+                    class: "md:flex-1 mb-8",
                     FullLogo {},
-                    "© 2025, verbali"
+                    span {
+                        class: "text-sm text-gray-400 dark:text-gray-600",
+                        "© 2025, verbali"
+                    }
                 },
 
                 div {
-                    class: "flex-1 flex flex-row justify-center",
+                    class: "md:flex-1 flex flex-row justify-center",
 
                     div {
                         class: "flex-1",

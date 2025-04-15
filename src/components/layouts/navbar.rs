@@ -9,7 +9,7 @@ pub fn Navbar() -> Element {
     rsx! {
         div {
             div {
-                class: "mx-auto w-4xl flex flex-row justify-between items-center p-4",
+                class: "max-w-4xl lg:mx-auto lg:w-4xl flex flex-row justify-between items-center p-4",
                 Link {
                     to: Route::Home {},
                     FullLogo {}
