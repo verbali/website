@@ -1,8 +1,6 @@
 use crate::Route;
 use dioxus::prelude::*;
 
-const LOGO: Asset = asset!("/assets/logo.svg");
-
 #[derive(PartialEq, Props, Clone)]
 pub struct ButtonProps {
     label: String,

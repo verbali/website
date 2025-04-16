@@ -1,8 +1,6 @@
 use crate::components::logos::IconLogo;
 use dioxus::prelude::*;
 
-const LOGO: Asset = asset!("/assets/logo.svg");
-
 #[component]
 pub fn FullLogo() -> Element {
     rsx! {

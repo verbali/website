@@ -3,8 +3,6 @@ use crate::components::logos::IconLogo;
 use crate::Route;
 use dioxus::prelude::*;
 
-const LOGO: Asset = asset!("/assets/logo.svg");
-
 #[component]
 pub fn Home() -> Element {
     rsx! {

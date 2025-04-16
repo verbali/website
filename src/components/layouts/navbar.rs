@@ -2,8 +2,6 @@ use crate::components::logos::FullLogo;
 use crate::Route;
 use dioxus::prelude::*;
 
-const LOGO: Asset = asset!("/assets/logo.svg");
-
 #[component]
 pub fn Navbar() -> Element {
     rsx! {
