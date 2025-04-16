@@ -1,6 +1,5 @@
 use crate::components::button::Button;
 use crate::components::forms::inputs::{InputText, Textarea};
-use crate::Route;
 use dioxus::prelude::*;
 
 #[component]

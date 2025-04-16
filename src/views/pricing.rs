@@ -1,5 +1,4 @@
 use crate::components::cards::PricingCard;
-use crate::Route;
 use dioxus::prelude::*;
 
 #[component]
