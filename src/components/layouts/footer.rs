@@ -9,6 +9,22 @@ use unic_langid::LanguageIdentifier;
 pub fn Footer() -> Element {
     let mut i18n = i18n();
     let mut change_language = move |lang: LanguageIdentifier| i18n.set_language(lang);
+    let mut mode = use_signal(|| None);
+
+    document::eval(
+        r#"let theme = (localStorage.theme ==='dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', theme);"#,
+    );
+
+    use_effect(move || match mode() {
+        Some(theme_mode) => {
+            document::eval(&format!(
+                r#"window.localStorage.setItem('theme', '{theme_mode}');
+                document.documentElement.setAttribute('data-theme', '{theme_mode}');"#
+            ));
+        }
+        None => {}
+    });
 
     rsx! {
         div {
@@ -116,6 +132,19 @@ pub fn Footer() -> Element {
                     onclick: move |_| change_language("fr".parse().expect("No 'fr' language")),
                     class: "inline-block p-2 cursor-pointer",
                     "fr"
+                }
+            },
+            div {
+                class: "flex flex-wrap justify-center my-8",
+                div {
+                    onclick: move |_| mode.set(Some("light")),
+                    class: "inline-block p-2 cursor-pointer",
+                    "light"
+                },
+                div {
+                    onclick: move |_| mode.set(Some("dark")),
+                    class: "inline-block p-2 cursor-pointer",
+                    "dark"
                 }
             },
             div {

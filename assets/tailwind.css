@@ -217,9 +217,6 @@
   .my-24 {
     margin-block: calc(var(--spacing) * 24);
   }
-  .mt-8 {
-    margin-top: calc(var(--spacing) * 8);
-  }
   .mt-32 {
     margin-top: calc(var(--spacing) * 32);
   }
@@ -481,44 +478,44 @@
     }
   }
   .dark\:border-gray-600 {
-    @media (prefers-color-scheme: dark) {
+    &:where([data-theme=dark], [data-theme=dark] *) {
       border-color: var(--color-gray-600);
     }
   }
   .dark\:border-gray-800 {
-    @media (prefers-color-scheme: dark) {
+    &:where([data-theme=dark], [data-theme=dark] *) {
       border-color: var(--color-gray-800);
     }
   }
   .dark\:bg-blue-800 {
-    @media (prefers-color-scheme: dark) {
+    &:where([data-theme=dark], [data-theme=dark] *) {
       background-color: var(--color-blue-800);
     }
   }
   .dark\:bg-gray-700 {
-    @media (prefers-color-scheme: dark) {
+    &:where([data-theme=dark], [data-theme=dark] *) {
       background-color: var(--color-gray-700);
     }
   }
   .dark\:text-gray-600 {
-    @media (prefers-color-scheme: dark) {
+    &:where([data-theme=dark], [data-theme=dark] *) {
       color: var(--color-gray-600);
     }
   }
   .dark\:text-white {
-    @media (prefers-color-scheme: dark) {
+    &:where([data-theme=dark], [data-theme=dark] *) {
       color: var(--color-white);
     }
   }
   .dark\:placeholder-gray-400 {
-    @media (prefers-color-scheme: dark) {
+    &:where([data-theme=dark], [data-theme=dark] *) {
       &::placeholder {
         color: var(--color-gray-400);
       }
     }
   }
   .dark\:hover\:bg-blue-700 {
-    @media (prefers-color-scheme: dark) {
+    &:where([data-theme=dark], [data-theme=dark] *) {
       &:hover {
         @media (hover: hover) {
           background-color: var(--color-blue-700);
@@ -527,7 +524,7 @@
     }
   }
   .dark\:hover\:text-gray-300 {
-    @media (prefers-color-scheme: dark) {
+    &:where([data-theme=dark], [data-theme=dark] *) {
       &:hover {
         @media (hover: hover) {
           color: var(--color-gray-300);
@@ -536,14 +533,14 @@
     }
   }
   .dark\:focus\:border-blue-500 {
-    @media (prefers-color-scheme: dark) {
+    &:where([data-theme=dark], [data-theme=dark] *) {
       &:focus {
         border-color: var(--color-blue-500);
       }
     }
   }
   .dark\:focus\:ring-blue-500 {
-    @media (prefers-color-scheme: dark) {
+    &:where([data-theme=dark], [data-theme=dark] *) {
       &:focus {
         --tw-ring-color: var(--color-blue-500);
       }
@@ -556,7 +553,7 @@ body {
   font-family: sans-serif;
   margin: 0;
   padding: 0;
-  @media (prefers-color-scheme: dark) {
+  &:where([data-theme=dark], [data-theme=dark] *) {
     background-color: #000;
     color: #fff;
   }
