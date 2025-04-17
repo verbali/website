@@ -1,6 +1,7 @@
 use crate::components::logos::FullLogo;
 use crate::Route;
 use dioxus::prelude::*;
+use dioxus_i18n::tid;
 
 #[component]
 pub fn Navbar() -> Element {
@@ -17,22 +18,22 @@ pub fn Navbar() -> Element {
                     Link {
                         class: "hover:text-gray-700 dark:hover:text-gray-300 px-4 py-2",
                         to: Route::Home {},
-                        "Accueil"
+                        {tid!("menu.home")}
                     }
                     Link {
                         class: "hover:text-gray-700 dark:hover:text-gray-300 px-4 py-2",
                         to: Route::Product {},
-                        "Produit"
+                        {tid!("menu.product")}
                     }
                     Link {
                         class: "hover:text-gray-700 dark:hover:text-gray-300 px-4 py-2",
                         to: Route::Pricing {},
-                        "Tarif"
+                        {tid!("menu.pricing")}
                     }
                     Link {
                         class: "hover:text-gray-700 dark:hover:text-gray-300 px-4 py-2",
                         to: Route::Contact {},
-                        "Contact"
+                        {tid!("menu.contact")}
                     }
                 }
             }

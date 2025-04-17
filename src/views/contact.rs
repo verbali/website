@@ -1,6 +1,7 @@
 use crate::components::button::Button;
 use crate::components::forms::inputs::{InputText, Textarea};
 use dioxus::prelude::*;
+use dioxus_i18n::tid;
 
 #[component]
 pub fn Contact() -> Element {
@@ -12,33 +13,33 @@ pub fn Contact() -> Element {
                 class: "my-24 text-center",
                 h1 {
                     class: "font-bold text-6xl my-8",
-                    "Contact"
+                    {tid!("contact")}
                 }
                 p {
                     class: "my-8 text-xl",
-                    "Une question ? Envoyez nous un message."
+                    {tid!("contact.content")}
                 }
             }
 
             form {
                 InputText {
-                    label: "Nom",
+                    label: tid!("contact.name"),
                     placeholder: "John Doe",
                     required: true
                 }
                 InputText {
-                    label: "Email",
+                    label: tid!("contact.mail"),
                     placeholder: "John@doe.com",
                     required: true
                 }
                 Textarea {
-                    label: "Message",
+                    label: tid!("contact.message"),
                     required: true
                 }
                 div {
                     class: "text-center",
                     Button {
-                        label: "Envoyer",
+                        label: tid!("contact.submit"),
                         type: "submit"
                     }
                 }

@@ -2,6 +2,7 @@ use crate::components::button::Button;
 use crate::components::logos::IconLogo;
 use crate::Route;
 use dioxus::prelude::*;
+use dioxus_i18n::tid;
 
 #[component]
 pub fn Home() -> Element {
@@ -16,14 +17,14 @@ pub fn Home() -> Element {
                     class: "md:pr-18",
                     h1 {
                         class: "font-bold text-6xl my-8",
-                        "Récupération de feedback client"
+                        {tid!("home-product")}
                     }
                     p {
                         class: "my-8 text-xl",
-                        "Collectez facilement les avis de vos clients et améliorez votre produit."
+                        {tid!("home-product.content")}
                     }
                     Button {
-                        label: "En savoir plus",
+                        label: tid!("home-product.btn"),
                         route: Route::Product {}
                     }
                 }

@@ -1,4 +1,6 @@
 use dioxus::prelude::*;
+use dioxus_i18n::prelude::*;
+use unic_langid::langid;
 
 use layouts::BaseLayout;
 use views::{Contact, Home, Pricing, Product};
@@ -34,6 +36,12 @@ fn main() {
 
 #[component]
 fn App() -> Element {
+    use_init_i18n(|| {
+        I18nConfig::new(langid!("fr"))
+            .with_locale((langid!("fr"), include_str!("./locales/fr.ftl")))
+            .with_locale((langid!("en"), include_str!("./locales/en.ftl")))
+    });
+
     rsx! {
         document::Link { rel: "icon", href: FAVICON }
         document::Link { rel: "stylesheet", href: MAIN_CSS }

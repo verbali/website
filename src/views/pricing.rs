@@ -1,5 +1,6 @@
 use crate::components::cards::PricingCard;
 use dioxus::prelude::*;
+use dioxus_i18n::tid;
 
 #[component]
 pub fn Pricing() -> Element {
@@ -11,11 +12,11 @@ pub fn Pricing() -> Element {
                 class: "my-24 text-center",
                 h1 {
                     class: "font-bold text-6xl my-8",
-                    "Tarification"
+                    {tid!("pricing")}
                 }
                 p {
                     class: "my-8 text-xl",
-                    "Choisissez le plan adapté à vos besoins."
+                    {tid!("pricing.content")}
                 }
             }
 
@@ -23,7 +24,7 @@ pub fn Pricing() -> Element {
                 class: "flex flex-row flex-wrap justify-center",
 
                 PricingCard {
-                    title: "Basique",
+                    title: tid!("subscription.one"),
                     price: "0",
                     features: vec![
                         "Feature 1".to_string(),
@@ -32,7 +33,7 @@ pub fn Pricing() -> Element {
                 }
 
                 PricingCard {
-                    title: "Standard",
+                    title: tid!("subscription.two"),
                     price: "5€",
                     features: vec![
                         "Feature 1".to_string(),
@@ -43,7 +44,7 @@ pub fn Pricing() -> Element {
                 }
 
                 PricingCard {
-                    title: "Premium",
+                    title: tid!("subscription.three"),
                     price: "20€",
                     features: vec![
                         "Feature 1".to_string(),

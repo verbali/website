@@ -2,9 +2,14 @@ use crate::components::icons::{FacebookIcon, GithubIcon, InstagramIcon, Linkedin
 use crate::components::logos::FullLogo;
 use crate::Route;
 use dioxus::prelude::*;
+use dioxus_i18n::{prelude::*, tid};
+use unic_langid::LanguageIdentifier;
 
 #[component]
 pub fn Footer() -> Element {
+    let mut i18n = i18n();
+    let mut change_language = move |lang: LanguageIdentifier| i18n.set_language(lang);
+
     rsx! {
         div {
             class: "max-w-4xl lg:mx-auto lg:w-4xl p-4 mt-32",
@@ -35,7 +40,7 @@ pub fn Footer() -> Element {
                                 Link {
                                     class: "hover:text-gray-700 dark:hover:text-gray-300",
                                     to: Route::Home {},
-                                    "Accueil"
+                                    {tid!("menu.home")}
                                 }
                             },
                             li {
@@ -43,7 +48,7 @@ pub fn Footer() -> Element {
                                 Link {
                                     class: "hover:text-gray-700 dark:hover:text-gray-300",
                                     to: Route::Product {},
-                                    "Produit"
+                                    {tid!("menu.product")}
                                 }
                             },
                             li {
@@ -51,7 +56,7 @@ pub fn Footer() -> Element {
                                 Link {
                                     class: "hover:text-gray-700 dark:hover:text-gray-300",
                                     to: Route::Pricing {},
-                                    "Tarif"
+                                    {tid!("menu.pricing")}
                                 }
                             },
                             li {
@@ -59,7 +64,7 @@ pub fn Footer() -> Element {
                                 Link {
                                     class: "hover:text-gray-700 dark:hover:text-gray-300",
                                     to: Route::Contact {},
-                                    "Contact"
+                                    {tid!("menu.contact")}
                                 }
                             },
                         }
@@ -69,7 +74,7 @@ pub fn Footer() -> Element {
                         class: "flex-1",
                         span {
                             class: "font-bold",
-                            "Assistance"
+                            {tid!("menu-support")}
                         },
                         ul {
                             li {
@@ -77,7 +82,7 @@ pub fn Footer() -> Element {
                                 Link {
                                     class: "hover:text-gray-700 dark:hover:text-gray-300",
                                     to: "#",
-                                    "Foire aux questions"
+                                    {tid!("menu-support.faq")}
                                 }
                             },
                             li {
@@ -85,7 +90,7 @@ pub fn Footer() -> Element {
                                 Link {
                                     class: "hover:text-gray-700 dark:hover:text-gray-300",
                                     to: "#",
-                                    "Tutoriels"
+                                    {tid!("menu-support.tutorials")}
                                 }
                             },
                             li {
@@ -93,7 +98,7 @@ pub fn Footer() -> Element {
                                 Link {
                                     class: "hover:text-gray-700 dark:hover:text-gray-300",
                                     to: "#",
-                                    "Demande de support"
+                                    {tid!("menu-support.request")}
                                 }
                             },
                         }
@@ -101,7 +106,20 @@ pub fn Footer() -> Element {
                 }
             },
             div {
-                class: "flex justify-center items-center mt-8",
+                class: "flex flex-wrap justify-center my-8",
+                div {
+                    onclick: move |_| change_language("en".parse().expect("No 'en' language")),
+                    class: "inline-block p-2 cursor-pointer",
+                    "en"
+                },
+                div {
+                    onclick: move |_| change_language("fr".parse().expect("No 'fr' language")),
+                    class: "inline-block p-2 cursor-pointer",
+                    "fr"
+                }
+            },
+            div {
+                class: "flex justify-center items-center my-8",
                 div {
                     class: "m-4",
                     FacebookIcon {}
