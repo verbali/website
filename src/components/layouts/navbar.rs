@@ -1,7 +1,7 @@
-use crate::components::logos::FullLogo;
 use crate::Route;
 use dioxus::prelude::*;
 use dioxus_i18n::tid;
+use verbali_design_system::components::logos::FullLogo;
 
 #[component]
 pub fn Navbar() -> Element {

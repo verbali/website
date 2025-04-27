@@ -1,7 +1,7 @@
-use crate::components::button::Button;
-use crate::components::forms::inputs::{InputText, Textarea};
+use crate::Route;
 use dioxus::prelude::*;
 use dioxus_i18n::tid;
+use verbali_design_system::components::forms::{Button, Input, Textarea};
 
 #[component]
 pub fn Contact() -> Element {
@@ -22,12 +22,14 @@ pub fn Contact() -> Element {
             }
 
             form {
-                InputText {
+                Input {
+                    class: "mb-8",
                     label: tid!("contact.name"),
                     placeholder: "John Doe",
                     required: true
                 }
-                InputText {
+                Input {
+                    class: "mb-8",
                     label: tid!("contact.mail"),
                     placeholder: "John@doe.com",
                     required: true
@@ -38,7 +40,7 @@ pub fn Contact() -> Element {
                 }
                 div {
                     class: "text-center",
-                    Button {
+                    Button<Route> {
                         label: tid!("contact.submit"),
                         type: "submit"
                     }

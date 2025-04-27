@@ -1,6 +1,7 @@
-use crate::components::cards::PricingCard;
+use crate::Route;
 use dioxus::prelude::*;
 use dioxus_i18n::tid;
+use verbali_design_system::components::cards::PricingCard;
 
 #[component]
 pub fn Pricing() -> Element {
@@ -23,7 +24,7 @@ pub fn Pricing() -> Element {
             div {
                 class: "flex flex-row flex-wrap justify-center",
 
-                PricingCard {
+                PricingCard<Route> {
                     title: tid!("subscription.one"),
                     price: "0",
                     features: vec![
@@ -32,7 +33,7 @@ pub fn Pricing() -> Element {
                     ],
                 }
 
-                PricingCard {
+                PricingCard<Route> {
                     title: tid!("subscription.two"),
                     price: "5€",
                     features: vec![
@@ -43,7 +44,7 @@ pub fn Pricing() -> Element {
                     ],
                 }
 
-                PricingCard {
+                PricingCard<Route> {
                     title: tid!("subscription.three"),
                     price: "20€",
                     features: vec![

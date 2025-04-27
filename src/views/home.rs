@@ -1,8 +1,10 @@
-use crate::components::button::Button;
-use crate::components::logos::IconLogo;
 use crate::Route;
 use dioxus::prelude::*;
 use dioxus_i18n::tid;
+use verbali_design_system::components::{
+    forms::{Button, ButtonLink},
+    logos::IconLogo,
+};
 
 #[component]
 pub fn Home() -> Element {
@@ -23,9 +25,9 @@ pub fn Home() -> Element {
                         class: "my-8 text-xl",
                         {tid!("home-product.content")}
                     }
-                    Button {
+                    Button<Route> {
                         label: tid!("home-product.btn"),
-                        route: Route::Product {}
+                        link: ButtonLink::Internal(Route::Product {})
                     }
                 }
 
