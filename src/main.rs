@@ -43,8 +43,8 @@ fn App() -> Element {
 
     rsx! {
         document::Link { rel: "icon", href: LOGO_SVG }
-        document::Link { rel: "stylesheet", href: MAIN_CSS }
         document::Link { rel: "stylesheet", href: DS_CSS }
+        document::Link { rel: "stylesheet", href: MAIN_CSS }
 
         Router::<Route> {}
     }

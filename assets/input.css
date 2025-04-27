@@ -1,16 +1,1 @@
 @import "tailwindcss";
-
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
-
-body {
-    background-color: #fff;
-    color: #000;
-    font-family: sans-serif;
-    margin: 0;
-    padding: 0;
-
-    @variant dark {
-        background-color: #000;
-        color: #fff;
-    }
-}
