@@ -9,3 +9,6 @@ pub use pricing::Pricing;
 
 mod contact;
 pub use contact::Contact;
+
+mod test_subscriptions;
+pub use test_subscriptions::TestSubscriptions;

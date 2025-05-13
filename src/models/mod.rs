@@ -1,5 +1,5 @@
 mod subscription;
-pub use subscription::{InsertableSubscription, Subscription};
+pub use subscription::{InsertableSubscription, PublicSubscription, Subscription};
 
 mod price;
 pub use price::{InsertablePrice, Price};

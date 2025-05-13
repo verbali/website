@@ -4,7 +4,7 @@ use unic_langid::langid;
 use verbali_design_system::assets::{DS_CSS, LOGO_SVG};
 
 use layouts::BaseLayout;
-use views::{Contact, Home, Pricing, Product};
+use views::{Contact, Home, Pricing, Product, TestSubscriptions};
 
 mod components;
 mod helpers;
@@ -31,6 +31,9 @@ enum Route {
 
         #[route("/contact")]
         Contact {},
+
+        #[route("/subscriptions")]
+        TestSubscriptions {},
 }
 
 const MAIN_CSS: Asset = asset!("/assets/style.css");

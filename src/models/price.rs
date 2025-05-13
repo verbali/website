@@ -3,7 +3,9 @@ use crate::models::Subscription;
 use diesel::prelude::*;
 use serde::{Deserialize, Serialize};
 
-#[derive(Queryable, Selectable, Identifiable, Associations, Debug, PartialEq)]
+#[derive(
+    Queryable, Selectable, Identifiable, Associations, Serialize, Deserialize, Debug, PartialEq,
+)]
 #[diesel(belongs_to(Subscription))]
 #[diesel(table_name = crate::schema::prices)]
 #[diesel(check_for_backend(diesel::pg::Pg))]

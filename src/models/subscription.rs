@@ -1,8 +1,9 @@
 use crate::helpers::database;
+use crate::models::Price;
 use diesel::prelude::*;
 use serde::{Deserialize, Serialize};
 
-#[derive(Queryable, Selectable, Identifiable, Debug, PartialEq)]
+#[derive(Queryable, Selectable, Identifiable, Serialize, Deserialize, Debug, PartialEq)]
 #[diesel(table_name = crate::schema::subscriptions)]
 #[diesel(check_for_backend(diesel::pg::Pg))]
 pub struct Subscription {
@@ -24,6 +25,14 @@ pub struct InsertableSubscription {
     pub highlighted: bool,
 }
 
+#[derive(Serialize, Deserialize, Debug)]
+pub struct PublicSubscription {
+    pub id: i32,
+    pub title: String,
+    pub highlighted: bool,
+    pub prices: Option<Vec<Price>>,
+}
+
 impl Subscription {
     pub fn create(
         subscription: InsertableSubscription,
@@ -42,13 +51,45 @@ impl Subscription {
             .get_result(connection)
     }
 
-    pub fn findAll() -> Result<Vec<Subscription>, diesel::result::Error> {
+    pub fn findAll() -> Result<Vec<PublicSubscription>, diesel::result::Error> {
         use crate::schema::subscriptions;
 
         let connection = &mut database::establish_connection();
 
-        subscriptions::dsl::subscriptions
+        match subscriptions::dsl::subscriptions
             .select(Subscription::as_select())
-            .load(connection)
+            .get_results(connection)
+        {
+            Ok(subscriptions) => {
+                let mut results = Vec::new();
+
+                for subscription in subscriptions.iter() {
+                    match Price::belonging_to(&subscription)
+                        .select(Price::as_select())
+                        .get_results(connection)
+                    {
+                        Ok(prices) => {
+                            results.push(PublicSubscription {
+                                id: subscription.id,
+                                title: subscription.title.clone(),
+                                highlighted: subscription.highlighted,
+                                prices: Some(prices),
+                            });
+                        }
+                        Err(_) => {
+                            results.push(PublicSubscription {
+                                id: subscription.id,
+                                title: subscription.title.clone(),
+                                highlighted: subscription.highlighted,
+                                prices: None,
+                            });
+                        }
+                    }
+                }
+
+                Ok(results)
+            }
+            Err(err) => Err(err),
+        }
     }
 }
