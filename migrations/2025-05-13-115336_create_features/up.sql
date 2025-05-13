@@ -1,0 +1,1 @@
+CREATE TABLE features (id SERIAL PRIMARY KEY, feature VARCHAR NOT NULL);

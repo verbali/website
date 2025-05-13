@@ -7,8 +7,14 @@ use layouts::BaseLayout;
 use views::{Contact, Home, Pricing, Product};
 
 mod components;
+mod helpers;
 mod layouts;
 mod views;
+
+#[cfg(feature = "server")]
+mod models;
+#[cfg(feature = "server")]
+mod schema;
 
 #[derive(Debug, Clone, Routable, PartialEq)]
 #[rustfmt::skip]
