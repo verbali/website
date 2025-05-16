@@ -8,19 +8,11 @@ diesel::table! {
 }
 
 diesel::table! {
-    prices (id) {
-        id -> Int4,
-        country -> Varchar,
-        price -> Float4,
-        subscription_id -> Int4,
-    }
-}
-
-diesel::table! {
     subscriptions (id) {
         id -> Int4,
         title -> Varchar,
-        highlighted -> Bool,
+        price -> Float4,
+        label -> Nullable<Varchar>,
     }
 }
 
@@ -31,13 +23,7 @@ diesel::table! {
     }
 }
 
-diesel::joinable!(prices -> subscriptions (subscription_id));
 diesel::joinable!(subscriptions_features -> features (feature_id));
 diesel::joinable!(subscriptions_features -> subscriptions (subscription_id));
 
-diesel::allow_tables_to_appear_in_same_query!(
-    features,
-    prices,
-    subscriptions,
-    subscriptions_features,
-);
+diesel::allow_tables_to_appear_in_same_query!(features, subscriptions, subscriptions_features,);

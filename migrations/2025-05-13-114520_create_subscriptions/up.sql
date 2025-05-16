@@ -1,5 +1,6 @@
 CREATE TABLE subscriptions (
     id SERIAL PRIMARY KEY,
     title VARCHAR NOT NULL UNIQUE,
-    highlighted BOOLEAN NOT NULL DEFAULT FALSE
+    price REAL NOT NULL,
+    label VARCHAR
 )

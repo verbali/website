@@ -1,5 +1,4 @@
 use crate::helpers::database;
-use crate::models::Price;
 use diesel::prelude::*;
 use serde::{Deserialize, Serialize};
 
@@ -9,28 +8,31 @@ use serde::{Deserialize, Serialize};
 pub struct Subscription {
     pub id: i32,
     pub title: String,
-    pub highlighted: bool,
+    pub price: f32,
+    pub label: Option<String>,
 }
 
 #[derive(Insertable)]
 #[diesel(table_name = crate::schema::subscriptions)]
 struct NewSubscription<'a> {
     title: &'a str,
-    highlighted: bool,
+    price: f32,
+    label: Option<&'a str>,
 }
 
 #[derive(Debug)]
 pub struct InsertableSubscription {
     pub title: String,
-    pub highlighted: bool,
+    pub price: f32,
+    pub label: Option<String>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct PublicSubscription {
     pub id: i32,
     pub title: String,
-    pub highlighted: bool,
-    pub prices: Option<Vec<Price>>,
+    pub price: f32,
+    pub label: Option<String>,
 }
 
 impl Subscription {
@@ -40,9 +42,11 @@ impl Subscription {
         use crate::schema::subscriptions;
 
         let connection = &mut database::establish_connection();
+        let label = subscription.label.unwrap_or("".to_string());
         let new_subscription = NewSubscription {
             title: &subscription.title,
-            highlighted: subscription.highlighted,
+            price: subscription.price,
+            label: Some(&label),
         };
 
         diesel::insert_into(subscriptions::table)
@@ -58,33 +62,19 @@ impl Subscription {
 
         match subscriptions::dsl::subscriptions
             .select(Subscription::as_select())
+            .order(subscriptions::id.asc())
             .get_results(connection)
         {
             Ok(subscriptions) => {
                 let mut results = Vec::new();
 
                 for subscription in subscriptions.iter() {
-                    match Price::belonging_to(&subscription)
-                        .select(Price::as_select())
-                        .get_results(connection)
-                    {
-                        Ok(prices) => {
-                            results.push(PublicSubscription {
-                                id: subscription.id,
-                                title: subscription.title.clone(),
-                                highlighted: subscription.highlighted,
-                                prices: Some(prices),
-                            });
-                        }
-                        Err(_) => {
-                            results.push(PublicSubscription {
-                                id: subscription.id,
-                                title: subscription.title.clone(),
-                                highlighted: subscription.highlighted,
-                                prices: None,
-                            });
-                        }
-                    }
+                    results.push(PublicSubscription {
+                        id: subscription.id,
+                        title: subscription.title.clone(),
+                        price: subscription.price,
+                        label: subscription.label.clone(),
+                    });
                 }
 
                 Ok(results)
